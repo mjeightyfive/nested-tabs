@@ -1,0 +1,12 @@
+{
+  "name": "nested-tabs",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "*",
+    "modernizr": "*",
+    "jquery": "*",
+    "angular-ui-router": "*",
+    "angular-bootstrap": "*"
+  },
+  "devDependencies": {}
+}
