@@ -1,2 +1,13 @@
 <h3>Page 3</h3>
-<div ui-view></div>
+
+<div class="page-content" ng-controller="TabsController">
+    <tabset>
+        <tab heading="Tab 1" ui-sref="page-3.tab-1"></tab>
+        <tab heading="Tab 2" ui-sref="page-3.tab-2"></tab>
+        <tab heading="Tab 3" ui-sref="page-3.tab-3"></tab>
+    </tabset>
+</div>
+
+<div class="tab-content">
+    <ui-view></ui-view>
+</div>
