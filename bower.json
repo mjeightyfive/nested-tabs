@@ -6,7 +6,7 @@
     "modernizr": "*",
     "jquery": "*",
     "angular-ui-router": "*",
-    "angular-bootstrap": "*"
+    "angular-ui-router.stateHelper": "~1.1.0"
   },
   "devDependencies": {}
 }

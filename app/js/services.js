@@ -2,20 +2,17 @@
 
 /* Services */
 
-
-// Demonstrate how to register services
-// In this case it is a simple value service.
 angular.module('myApp.services', [])
-	
+
 	.value('version', '0.1')
 
 	.service('dataService', [ '$http', function ($http) {
 
-		return {
-		    async: function() {
-		      return $http.get('data.json');
-		    }
-		};
+		// return {
+		//     async: function() {
+		//       return $http.get('data.json');
+		//     }
+		// };
 
 		// var getData = function (url) {
 	 // 		console.log('url ' + url);
@@ -32,11 +29,11 @@ angular.module('myApp.services', [])
 		//     }).
 		//     error(function (data, status, headers, config) {
 		//         console.log('error');
-		//     });	        
-	 
+		//     });
+
 	 //        return {
 	 //            getData: d
 	 //        };
-	 
+
 	 //    };
 	}]);

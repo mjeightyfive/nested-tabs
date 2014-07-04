@@ -22,8 +22,10 @@
                             <%= name %>
                         </a>
                         <ul class="nav navbar-nav">
-                            <li><a ui-sref="home">Home</a></li>
-                            <li><a ui-sref="about">About</a></li>
+                            <li><a ui-sref="page-1">Page 1</a></li>
+                            <li><a ui-sref="page-2">Page 2</a></li>
+                            <li><a ui-sref="page-3">Page 3</a></li>
+                            <li><a ui-sref="page-4">Page 4</a></li>
                         </ul>
                     </div>
                 </div>
@@ -31,13 +33,9 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="well">
+                <div>
                     <div ui-view></div>
                 </div>
-            </div>
-
-            <div class="footer">
-                <p><i class="fa fa-twitter-square"></i> <%= author %></p>
             </div>
         </div>
     <!--INJECT:jslibs-->

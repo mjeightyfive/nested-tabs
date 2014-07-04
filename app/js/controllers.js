@@ -3,39 +3,21 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-	.controller('MyCtrl1', ['$scope', function ($scope) {
+	.controller('TabsDemoCtrl', ['$scope', function ($scope) {
 
-	        $scope.clock = {
-	            now: new Date()
-	        };
+            $scope.tabs = [{
+                title:'Dynamic Title 1', content:'Dynamic content 1'
+            }, {
+                title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true
+            }];
 
-	        var updateClock = function () {
-	            $scope.clock.now = new Date()
-	        };
+            $scope.alertMe = function() {
+            setTimeout(function() {
+              alert('You\'ve selected the alert tab!');
+            });
+            };
 
-	        setInterval(function () {
-	            $scope.$apply(updateClock);
-	        }, 1000);
-
-	        updateClock();
 	    }
 	])
-
-	
-    .controller('MultiTabController', [ '$scope', 'dataService', function ($scope, dataService) {
-
-			dataService.async().then(function(d) {
-				$scope.week = d.data;
-			});
-        }
-    ])
-
-
-
-    .controller('TabsDemoCtrl', [ '$scope', function ($scope) {
-
-    }])
-
-
 
 ;

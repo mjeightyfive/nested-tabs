@@ -2,24 +2,27 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives',
-  'myApp.controllers',
-  'ui.bootstrap',
-  'ui.router'
+    'myApp.filters',
+    'myApp.services',
+    'myApp.directives',
+    'myApp.controllers',
+    'ui.bootstrap',
+    'ui.router',
+    'ui.router.stateHelper'
 ]).
-config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+config(['$stateProvider', 'stateHelperProvider', '$urlRouterProvider',  function ($stateProvider, stateHelperProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/home');
+        stateHelperProvider.setNestedState({
+            name: 'page-1',
+            templateUrl: 'views/page-1.html',
+            children: [{
+                name: 'tab-1',
+                templateUrl: 'views/page-1.tab-1.html'
+            }, {
+                name: 'tab-2',
+                templateUrl: 'views/page-1.tab-2.html'
+            }]
+        }, true);
 
-  $stateProvider
-    .state('home', {
-      url: "/home",
-      templateUrl: "views/home.html"
-    })
-    .state('about', {
-      url: "/about",
-      templateUrl: "views/about.html"
-    })
-}]);
+    }]
+);
