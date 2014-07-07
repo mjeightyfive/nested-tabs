@@ -1,0 +1,50 @@
+{
+    "page-1": {
+        "url": "/page-1",
+        "templateUrl": "views/page-1.html"
+    },
+    "page-1.tab-1": {
+        "url": "/tab-1",
+        "templateUrl": "views/page-1.tab-1.html"
+    },
+    "page-1.tab-2": {
+        "url": "/tab-2",
+        "templateUrl": "views/page-1.tab-2.html"
+    },
+    "page-1.tab-3": {
+        "url": "/tab-3",
+        "templateUrl": "views/page-1.tab-3.html"
+    },
+    "page-2": {
+        "url": "/page-2",
+        "templateUrl": "views/page-2.html"
+    },
+    "page-2.tab-1": {
+        "url": "/tab-1",
+        "templateUrl": "views/page-1.tab-1.html"
+    },
+    "page-2.tab-2": {
+        "url": "/tab-2",
+        "templateUrl": "views/page-1.tab-2.html"
+    },
+    "page-2.tab-3": {
+        "url": "/tab-3",
+        "templateUrl": "views/page-1.tab-3.html"
+    },
+    "page-3": {
+        "url": "/page-2",
+        "templateUrl": "views/page-2.html"
+    },
+    "page-3.tab-1": {
+        "url": "/tab-1",
+        "templateUrl": "views/page-1.tab-1.html"
+    },
+    "page-3.tab-2": {
+        "url": "/tab-2",
+        "templateUrl": "views/page-1.tab-2.html"
+    },
+    "page-3.tab-3": {
+        "url": "/tab-3",
+        "templateUrl": "views/page-1.tab-3.html"
+    },
+}

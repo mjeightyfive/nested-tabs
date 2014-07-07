@@ -7,8 +7,7 @@
       "bower_components/jquery/dist/jquery.js",
       "bower_components/bootstrap/dist/js/bootstrap.js",
       "bower_components/angular/angular.js",
-      "bower_components/angular-ui-router/release/angular-ui-router.js",
-      "bower_components/angular-ui-router.stateHelper/statehelper.js"
+      "bower_components/angular-ui-router/release/angular-ui-router.js"
     ],
     "jsapp": [
       "app/js/ui-bootstrap-custom-0.10.0.js",

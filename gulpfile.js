@@ -55,8 +55,12 @@ app.use(livereload({
 app.use(express.static(config.dest));
 
 gulp.task('clean', function() {
-    return gulp.src(config.dest, { read: false })
-        .pipe(rimraf({ force: true }));
+    return gulp.src(config.dest, {
+        read: false
+    })
+        .pipe(rimraf({
+            force: true
+        }));
 });
 
 gulp.task('default', ['clean'], function() {
@@ -92,11 +96,11 @@ gulp.task('browser-sync', ['build'], function() {
         if (config.bsync) {
 
             browsersync.init([
-                    config.dest + '/**/*.css',
-                    config.dest + '/**/*.js',
-                    config.dest + '/**/*.html',
-                    config.dest + '/**/*.php',
-                ], {
+                config.dest + '/**/*.css',
+                config.dest + '/**/*.js',
+                config.dest + '/**/*.html',
+                config.dest + '/**/*.php',
+            ], {
                 server: {
                     baseDir: config.dest
                 },
@@ -113,37 +117,35 @@ gulp.task('browser-sync', ['build'], function() {
 });
 
 gulp.task('build', [
-        'images',
-        'fonts',
-        'files',
-        'styles',
-        'scripts'
-    ], function() {
-});
+    'images',
+    'fonts',
+    'files',
+    'styles',
+    'scripts'
+], function() {});
 
 gulp.task('live', [
-        'images',
-        'fonts',
-        'files',
-        'styles',
-        'scripts',
-        'sitemap'
-    ], function() {
-});
+    'images',
+    'fonts',
+    'files',
+    'styles',
+    'scripts',
+    'sitemap'
+], function() {});
 
-gulp.task('html', function () {
+gulp.task('html', function() {
 
     gulp.src([
         config.path + '/**/*.html',
         '!' + config.path + '/index.*',
         config.path + '/**/*.php'
     ])
-    .pipe(cond(!live, changed(config.dest)))
-    .pipe(gulp.dest(config.dest))
-    .pipe(refresh(lrserver));
+        .pipe(cond(!live, changed(config.dest)))
+        .pipe(gulp.dest(config.dest))
+        .pipe(refresh(lrserver));
 });
 
-gulp.task('inject', ['html'], function () {
+gulp.task('inject', ['html'], function() {
 
     if (live) {
 
@@ -173,16 +175,18 @@ gulp.task('inject', ['html'], function () {
 
 });
 
-gulp.task('files', function () {
-  gulp.src(config.files)
-    .pipe(gulp.dest(config.dest))
-    .pipe(refresh(lrserver));
+gulp.task('files', function() {
+    gulp.src(config.files)
+        .pipe(gulp.dest(config.dest))
+        .pipe(refresh(lrserver));
 });
 
-gulp.task('fonts', function () {
-  gulp.src(config.fonts)
-    .pipe(gulp.dest(config.dest + '/fonts'))
-    .pipe(cond(live, size({ showFiles: true })));
+gulp.task('fonts', function() {
+    gulp.src(config.fonts)
+        .pipe(gulp.dest(config.dest + '/fonts'))
+        .pipe(cond(live, size({
+            showFiles: true
+        })));
 });
 
 gulp.task('images', function() {
@@ -191,62 +195,75 @@ gulp.task('images', function() {
         .pipe(cond(live, imagemin({
             optimizationLevel: 3,
             progressive: true,
-            interlaced: true })))
-        .pipe(cond(live, size({ showFiles: true })))
+            interlaced: true
+        })))
+        .pipe(cond(live, size({
+            showFiles: true
+        })))
         .pipe(gulp.dest(config.dest + '/images'));
 });
 
-gulp.task('styles', ['inject'], function () {
+gulp.task('styles', ['inject'], function() {
 
-    return streamqueue({ objectMode: true },
+    return streamqueue({
+            objectMode: true
+        },
         gulp.src(config.css),
         gulp.src(config.sass)
-            .pipe(sass({
-                includePaths: ['./app/scss']
-            }))
+        .pipe(sass({
+            includePaths: ['./app/scss']
+        }))
     )
-    .pipe(concat('style.css'))
-    .pipe(cond(live, size({ showFiles: true })))
-    .pipe(cond(live, autoprefixer(
-        'last 2 version',
-        'safari 5',
-        'ie 8',
-        'ie 9',
-        'opera 12.1',
-        'ios 6',
-        'android 4'
-    )))
-    .pipe(cond(live, uncss({
-        html: glob.sync(config.path + '/**/*.html'),
-        ignore: [
-            /:hover/,
-            /:active/,
-            /:visited/,
-            /:focus/,
-            /:checked/,
-            /.active/
-        ]
-    })))
-    .pipe(cond(live, csso({
-        keepSpecialComments: 0
-    })))
-    .pipe(gulp.dest(config.dest + '/css'))
-    .pipe(cond(live, size({ showFiles: true })))
-    .pipe(cond(!live, refresh(lrserver)));
+        .pipe(concat('style.css'))
+        .pipe(cond(live, size({
+            showFiles: true
+        })))
+        .pipe(cond(live, autoprefixer(
+            'last 2 version',
+            'safari 5',
+            'ie 8',
+            'ie 9',
+            'opera 12.1',
+            'ios 6',
+            'android 4'
+        )))
+        .pipe(cond(live, uncss({
+            html: glob.sync(config.path + '/**/*.html'),
+            ignore: [
+                /:hover/,
+                /:active/,
+                /:visited/,
+                /:focus/,
+                /:checked/,
+                /.active/
+            ]
+        })))
+        .pipe(cond(live, csso({
+            keepSpecialComments: 0
+        })))
+        .pipe(gulp.dest(config.dest + '/css'))
+        .pipe(cond(live, size({
+            showFiles: true
+        })))
+        .pipe(cond(!live, refresh(lrserver)));
 });
 
-gulp.task('scripts', function () {
+gulp.task('scripts', function() {
 
     if (live) {
 
-        return streamqueue({ objectMode: true },
+        return streamqueue({
+                objectMode: true
+            },
             gulp.src(config.jslibs),
             gulp.src(config.jsapp)
         )
-        .pipe(concat('scripts.js'))
-        .pipe(uglify())
-        .pipe(cond(live, size({ showFiles: true })))
-        .pipe(gulp.dest(config.dest));
+            .pipe(concat('scripts.js'))
+            .pipe(uglify())
+            .pipe(cond(live, size({
+                showFiles: true
+            })))
+            .pipe(gulp.dest(config.dest));
 
 
     } else {
@@ -254,7 +271,9 @@ gulp.task('scripts', function () {
         gulp.src(config.jslibs)
             .pipe(changed(config.dest))
             .pipe(concat('libs.js'))
-            .pipe(cond(live, size({ showFiles: true })))
+            .pipe(cond(live, size({
+                showFiles: true
+            })))
             .pipe(gulp.dest(config.dest));
 
         gulp.src(config.jsapp)
@@ -264,11 +283,11 @@ gulp.task('scripts', function () {
     }
 });
 
-gulp.task('sitemap', function () {
+gulp.task('sitemap', function() {
     gulp.src([
-            config.dest + '/**/*.html',
-            config.dest + '/**/index.php'
-        ], {
+        config.dest + '/**/*.html',
+        config.dest + '/**/index.php'
+    ], {
         read: false
     }).pipe(sitemap())
         .pipe(gulp.dest(config.dest + '/'));
@@ -280,13 +299,15 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('karma', ['scripts'], function () {
+gulp.task('karma', ['scripts'], function() {
 
     gulp.src([
         config.dest + '/libs.js',
         config.dest + '/app.js',
         './tests/**/*.js'
-        ], { read: false })
+    ], {
+        read: false
+    })
         .pipe(karma({
             browsers: ['PhantomJS'],
             action: 'run',
